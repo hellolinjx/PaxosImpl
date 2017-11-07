@@ -25,7 +25,7 @@ public class Acceptor {
 		
 		//	模拟网络不正常，发生丢包、超时现象
 		if	(PaxosUtil.isCrashed()){
-			PaxosUtil.printStr("Network not normal: " + this.toString());
+			//PaxosUtil.printStr("Network not normal: " + this.toString());
 			return null;
 		}
 		
