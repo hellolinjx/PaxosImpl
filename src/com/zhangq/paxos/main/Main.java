@@ -2,12 +2,8 @@ package com.zhangq.paxos.main;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import com.zhangq.paxos.bean.PaxosUtil;
-import com.zhangq.paxos.bean.Proposal;
 import com.zhangq.paxos.doer.Acceptor;
 import com.zhangq.paxos.doer.Proposer;
 
@@ -17,6 +13,7 @@ import com.zhangq.paxos.doer.Proposer;
  *
  */
 public class Main {
+	private static final int NUM_OF_PROPOSER = 5;
 	public static void main(String[] args){
 		List<Acceptor> acceptors = new ArrayList<>();
 		for	(int i=0;i<5;i++){
@@ -24,12 +21,8 @@ public class Main {
 		}
 		
 		ExecutorService es = Executors.newCachedThreadPool();
-		for	(int i=0;i<5;i++){
-			Proposal proposal = new Proposal();
-			proposal.setId(PaxosUtil.generateId());
-			proposal.setName(i+" proposal");
-			proposal.setValue(i+"");
-			Proposer proposer =  new Proposer(i+"", proposal, acceptors);
+		for	(int i=0;i<NUM_OF_PROPOSER;i++){
+			Proposer proposer =  new Proposer(i, i + "#Proposer", NUM_OF_PROPOSER, acceptors);
 			es.submit(proposer);
 		}
 		es.shutdown();

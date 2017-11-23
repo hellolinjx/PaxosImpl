@@ -12,6 +12,16 @@ public class Proposal {
 	int id;
 	//	提案的值
 	String value;
+	
+	public Proposal(){
+		
+	}
+	public Proposal(int id, String name, String value){
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
+	
 	public String getName() {
 		return name;
 	}

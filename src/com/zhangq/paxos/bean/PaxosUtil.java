@@ -12,9 +12,18 @@ public class PaxosUtil {
 	private static final int CHANCE_TO_CRASH = 4;  // 1/4的概率会因为网络原因丢失响应
 	private static int m_id = 0;
 	private static Random random = new Random();
-	//	提案序列号生成
-	public static synchronized int generateId(){
-		return m_id++;
+	
+	/*
+	 * @brief 提案序列号生成：保证唯一且递增。参考chubby中提议生成算法
+	 * @param myID 提议者的ID
+	 * @param numCycle 生成提议的轮次
+	 * @param 提议者个数
+	 * @return 生成的提案id
+	 * 
+	 */
+	public static int generateId(int myID, int numCycle, int proposerCount){
+		int id = numCycle * proposerCount + myID;
+		return id;
 	}
 	
 	//	随机休眠，模拟网络延迟
