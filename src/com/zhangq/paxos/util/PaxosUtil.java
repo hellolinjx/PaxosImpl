@@ -1,4 +1,4 @@
-package com.zhangq.paxos.bean;
+package com.zhangq.paxos.util;
 
 import java.util.Random;
 
@@ -28,14 +28,15 @@ public class PaxosUtil {
 	
 	//	随机休眠，模拟网络延迟
 	public  static int sleepRandom(){
-		int timeInMs = random.nextInt(100) + 10;
-		try {
-			Thread.currentThread().sleep(timeInMs);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return timeInMs;
+//		int timeInMs = random.nextInt(100) + 10;
+//		try {
+//			Thread.currentThread().sleep(timeInMs);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return timeInMs;
+		return 0;
 	}
 	
 	public static boolean isCrashed(){

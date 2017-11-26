@@ -8,9 +8,11 @@ import java.util.Map.Entry;
 
 import com.zhangq.paxos.bean.AcceptorStatus;
 import com.zhangq.paxos.bean.CommitResult;
-import com.zhangq.paxos.bean.PaxosUtil;
 import com.zhangq.paxos.bean.PrepareResult;
 import com.zhangq.paxos.bean.Proposal;
+import com.zhangq.paxos.main.Main;
+import com.zhangq.paxos.util.PaxosUtil;
+import com.zhangq.paxos.util.PerformanceRecord;
 
 /**
  * 提议者
@@ -216,7 +218,19 @@ public class Proposer implements Runnable{
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
+		Main.latch.countDown();
+		try {
+			Main.latch.await();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		PerformanceRecord.getInstance().start("Proposer" + myID, myID);
+		
 		prepare();
 		commit();
+
+		PerformanceRecord.getInstance().end(myID);
 	}
 }

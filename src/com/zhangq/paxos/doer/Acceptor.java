@@ -2,9 +2,9 @@ package com.zhangq.paxos.doer;
 
 import com.zhangq.paxos.bean.AcceptorStatus;
 import com.zhangq.paxos.bean.CommitResult;
-import com.zhangq.paxos.bean.PaxosUtil;
 import com.zhangq.paxos.bean.PrepareResult;
 import com.zhangq.paxos.bean.Proposal;
+import com.zhangq.paxos.util.PaxosUtil;
 
 /**
  * 决策者
